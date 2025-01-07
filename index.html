@@ -32,8 +32,39 @@
             margin: 0 auto;
             max-width: 600px;
         }
-        pre.example { background-color: #f9f9f9; padding: 10px; border: 1px solid #ddd; overflow-x: auto; font-size: 16px; line-height: 1.6; font-family: Arial, sans-serif; }
-        .instructions { max-width: 600px; margin: 20px auto; padding: 10px; background-color: #f9f9f9; border: 1px solid #ddd; }
+        pre.example { 
+            background-color: #f9f9f9; 
+            padding: 10px; 
+            border: 1px solid #ddd; 
+            overflow-x: auto; 
+            font-size: 16px; 
+            line-height: 1.6; 
+            font-family: Arial, sans-serif; 
+        }
+        .instructions { 
+            max-width: 600px; 
+            margin: 20px auto; 
+            padding: 10px; 
+            background-color: #f9f9f9; 
+            border: 1px solid #ddd; 
+        }
+        
+        .responsive-iframe {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9アスペクト比 */
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .responsive-iframe iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
     </style>
 </head>
 <body>
@@ -64,16 +95,15 @@
         <h2>使い方</h2>
         <p><strong>必要な物: エンダーアイ3個</strong></p>
         <ol>
-            <li>エンダーアイを投げてアイの左端を見ます。(視野を狭くすると精度が上がります/ズームでも可能)</li>
+            <li>エンダーアイを投げてアイの左端を見ます。(視野を狭くすると精度が上がります/ズーム推奨)</li>
             <li>目線はそのまま、右キー+ジャンプで4回移動。</li>
             <li>エンダーアイを投げ、一番左のピクセルからの差を確認します。(スクショしてエンダーアイの画像を確認すると測定しやすいです)</li>
             <li>ピクセルの差を「ずれたピクセル数」に入力します。</li>
             <li>もう一度投げて、今度はエンダーアイの真ん中を見ます。F3を押して角度を確認し、「アイの角度」に入力します。</li>
             <li>今立っている場所の座標(X,Z)を確認し、それぞれ「現在の座標X」と「現在の座標Z」に入力します。</li>
             <li>全ての値を入力したら「計算」ボタンを押してください。結果が画面に表示されます。</li>
-            <li>※注意 誤差はおよそ0mから100m程度あります</li>
         </ol>
-
+        <p align="center">※注意：誤差はおよそ0mから100m程度あります<br>RTAには適していません</p>
         <h3>記入例</h3>
         <pre class="example">
 (X座標:250/Z座標:-800/ピクセル差:2.2/エンダーアイの角度:-130.5度)
@@ -85,12 +115,20 @@
 
 <strong>結果</strong>
 現在: X:250 Z:-800
-要塞: X:1355 Z:-1744
-ネザー側要塞: X:169 Z:-218
-直線距離は: 1454m
-X方向の距離: 1105m
-Z方向の距離: 944m
+要塞: X:1307 Z:-1703
+ネザー側要塞: X:163 Z:-213
+直線距離は: 1391m
+X方向の距離: 1057m
+Z方向の距離: 903m
         </pre>
+        <div class="responsive-iframe">
+            <iframe src="https://www.youtube.com/embed/SoazUrprbn8?si=hsFs5afICXuzUCj-" 
+                    title="YouTube video player" frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
+            </iframe>
+        </div>
     </div>
 
     <script src="script.js"></script>
