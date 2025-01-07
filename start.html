@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>エンド要塞計算ツール</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; }
+        h1 { text-align: center; }
+        form { max-width: 400px; margin: 20px auto; }
+        label { display: block; margin-bottom: 10px; }
+        input { width: 100%; padding: 8px; box-sizing: border-box; }
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+            width: 45%;
+        }
+        pre#result {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border: 1px solid #ddd;
+            overflow-x: auto;
+            font-size: 20px;
+            line-height: 1.8;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0 auto;
+            max-width: 600px;
+        }
+        pre.example { background-color: #f9f9f9; padding: 10px; border: 1px solid #ddd; overflow-x: auto; font-size: 16px; line-height: 1.6; font-family: Arial, sans-serif; }
+        .instructions { max-width: 600px; margin: 20px auto; padding: 10px; background-color: #f9f9f9; border: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+    <h1>エンド要塞計算ツール</h1>
+
+    <form id="calculationForm">
+        <label for="currentX">現在の座標X
+            <input type="number" id="currentX" required>
+        </label>
+        <label for="currentZ">現在の座標Z
+            <input type="number" id="currentZ" required>
+        </label>
+        <label for="angleOffset">ずれたピクセル数
+            <input type="number" id="angleOffset" required>
+        </label>
+        <label for="eyeAngle">アイの角度
+            <input type="number" id="eyeAngle" required>
+        </label>
+        <div class="button-group">
+            <button type="button" onclick="calculate()">計算</button>
+            <button type="button" onclick="resetForm()">リセット</button>
+        </div>
+    </form>
+
+    <pre id="result"></pre>
+
+    <div class="instructions">
+        <h2>使い方</h2>
+        <p><strong>必要な物: エンダーアイ3個</strong></p>
+        <ol>
+            <li>エンダーアイを投げてアイの左端を見ます。(視野を狭くすると精度が上がります/ズームでも可能)</li>
+            <li>目線はそのまま、右キー+ジャンプで4回移動。</li>
+            <li>エンダーアイを投げ、一番左のピクセルからの差を確認します。(スクショしてエンダーアイの画像を確認すると測定しやすいです)</li>
+            <li>ピクセルの差を「ずれたピクセル数」に入力します。</li>
+            <li>もう一度投げて、今度はエンダーアイの真ん中を見ます。F3を押して角度を確認し、「アイの角度」に入力します。</li>
+            <li>今立っている場所の座標(X,Z)を確認し、それぞれ「現在の座標X」と「現在の座標Z」に入力します。</li>
+            <li>全ての値を入力したら「計算」ボタンを押してください。結果が画面に表示されます。</li>
+            <li>※注意 誤差はおよそ0mから200m程度あります</li>
+        </ol>
+
+        <h3>記入例</h3>
+        <pre class="example">
+(X座標:250/Z座標:-800/ピクセル差:2.2/エンダーアイの角度:-130.5度)
+
+現在の座標X：250
+現在の座標Z：-800
+ずれたピクセル数：2.2
+アイの角度：-130.5
+
+<strong>結果</strong>
+現在: X:250 Z:-800
+要塞: X:1355 Z:-1744
+ネザー側要塞: X:169 Z:-218
+直線距離は: 1454m
+X方向の距離: 1105m
+Z方向の距離: 944m
+        </pre>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
